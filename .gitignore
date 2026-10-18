@@ -27,3 +27,7 @@ tools/offline-test-runner/out/
 *.dlc
 *.bin
 models/
+
+# Offline check outputs
+tools/offline-app-logic-check/out/
+tools/offline-app-logic-check/stubs/out/

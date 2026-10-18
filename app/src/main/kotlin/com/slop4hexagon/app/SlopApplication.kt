@@ -36,7 +36,10 @@ class SlopApplication : Application() {
 
 class AppContainer(app: Application) {
 
-    private val context = app.applicationContext
+    /** Exposed for screens that need to hand a Context to platform helpers. */
+    val appContext: android.content.Context = app.applicationContext
+
+    private val context = appContext
 
     val scope = (app as? SlopApplication)?.applicationScope ?: CoroutineScope(SupervisorJob() + Dispatchers.Default)
 

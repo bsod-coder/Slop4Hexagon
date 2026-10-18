@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -51,8 +50,11 @@ class SettingsRepository(context: Context, private val scope: CoroutineScope) {
             )
         }
         .catch { t ->
+            // A corrupt preferences file must not brick the app: fall back to
+            // defaults and surface the reason, and emit the *settings* type the
+            // flow carries (not an empty Preferences document).
             _lastReadError.value = "settings unreadable (${t::class.java.simpleName}); using defaults"
-            emit(emptyPreferences())
+            emit(AppSettings())
         }
         .stateIn(scope, SharingStarted.Eagerly, AppSettings())
 

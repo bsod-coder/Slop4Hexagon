@@ -30,7 +30,7 @@ import java.io.File
  * All I/O happens on [Dispatchers.IO] behind a mutex; the in-memory list is
  * exposed as a [StateFlow] for the UI.
  */
-class JsonIndexStore<T>(
+abstract class JsonIndexStore<T>(
     private val directory: File,
     private val fileName: String,
     private val scope: CoroutineScope,

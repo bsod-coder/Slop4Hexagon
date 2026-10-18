@@ -50,6 +50,11 @@ class BackendManagerHolder(
 
     enum class AbiSupport { KNOWN_ARM64, EMULATOR_X86_64, UNKNOWN }
 
+    /** The loaded native engine, or null when the shared library is unusable. */
+    @Volatile
+    var nativeEngine: NativeCpuEngine? = null
+        private set
+
     val gpuReason: String = "No Adreno GPU compute engine is implemented in this build. " +
         "An OpenCL/Vulkan path would be required; nothing here can execute on the GPU, " +
         "so this backend reports itself unsupported rather than silently falling back."
@@ -84,7 +89,7 @@ class BackendManagerHolder(
 
         // Loading the JNI library from a background dispatcher only: the static
         // initializer runs System.loadLibrary.
-        val engine = NativeCpuEngine.load()
+        val engine = NativeCpuEngine.load().also { nativeEngine = it }
         val cpu = CpuInferenceBackend(engine)
 
         val qnnProbe = if (abi == AbiSupport.KNOWN_ARM64) {
@@ -112,7 +117,9 @@ class BackendManagerHolder(
             if (report.outcome is com.slop4hexagon.core.backend.InitOutcome.Failure) {
                 add("selected backend ${selection.chosen?.displayName ?: "none"}: ${(report.outcome as com.slop4hexagon.core.backend.InitOutcome.Failure).detail}")
             }
-            if (engine == null) add("native CPU engine missing: ${NativeCpuEngine.load()?.libraryLoadError ?: "libslop_native not loadable"}")
+            if (engine == null) {
+                add("native CPU engine missing: ${com.slop4hexagon.app.nativebridge.SlopNativeBridge.lastLoadError() ?: "libslop_native not loadable"}")
+            }
         }
         State(
             probing = false,

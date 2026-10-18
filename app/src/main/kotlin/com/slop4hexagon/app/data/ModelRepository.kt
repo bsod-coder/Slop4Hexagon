@@ -195,15 +195,15 @@ class ModelRepository(
     fun managedFile(descriptor: ModelDescriptor): File = File(context.filesDir, "models/${descriptor.id}")
 
     private fun queryDisplayName(uri: Uri): String? = runCatching {
-        context.contentResolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor ->
+        context.contentResolver.query(uri, arrayOf(OpenableColumns.Display.DISPLAY_NAME), null, null, null)?.use { cursor ->
             if (cursor.moveToFirst()) cursor.getString(0) else null
         }
     }.getOrNull()
 
     private fun querySize(uri: Uri): Long = runCatching {
-        context.contentResolver.query(uri, arrayOf(OpenableColumns.SIZE), null, null, null)?.use { cursor ->
+        context.contentResolver.query(uri, arrayOf(OpenableColumns.Display.SIZE), null, null, null)?.use { cursor ->
             if (cursor.moveToFirst()) {
-                val idx = cursor.getColumnIndex(OpenableColumns.SIZE)
+                val idx = cursor.getColumnIndex(OpenableColumns.Display.SIZE)
                 if (idx >= 0 && !cursor.isNull(idx)) cursor.getLong(idx) else 0L
             } else {
                 0L
