@@ -73,7 +73,7 @@ extern "C" {
  *   [0] numeric ProbeCode as decimal text
  *   [1] human-readable, truthful detail (never implies execution)
  */
-JNIEXPORT jobjectArray JNICALL Java_com_slop4hexagon_app_nativebridge_QnnNativeProbe_nativeProbe(JNIEnv *env, jobject /*thiz*/, jstring libraryName, jstring symbolName) {
+JNIEXPORT jobjectArray JNICALL Java_com_slop4hexagon_app_nativebridge_QnnNativeProbe_nativeProbeLibrary(JNIEnv *env, jobject /*thiz*/, jstring libraryName, jstring symbolName) {
     if (libraryName == nullptr || symbolName == nullptr) {
         return makeResult(env, kProbeInvalidName, "library name and symbol name are required");
     }
