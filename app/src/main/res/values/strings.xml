@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Slop4Hexagon</string>
+    <string name="app_subtitle">Local AI Image Lab • Snapdragon 778G+</string>
+    <string name="nav_generate">Generate</string>
+    <string name="nav_library">Models</string>
+    <string name="nav_benchmark">Benchmark</string>
+    <string name="nav_settings">Settings</string>
+    <string name="generate_title">Generate</string>
+    <string name="library_title">Model Library</string>
+    <string name="benchmark_title">Benchmark Lab</string>
+    <string name="settings_title">Settings &amp; Diagnostics</string>
+    <string name="prompt_hint">A photo of a fox in a forest, detailed, 8k</string>
+    <string name="negative_prompt_hint">blurry, low quality (optional)</string>
+    <string name="backend_auto">Auto</string>
+    <string name="backend_cpu">CPU</string>
+    <string name="backend_gpu">GPU</string>
+    <string name="backend_htp">HTP / QNN</string>
+    <string name="status_verified">Verified execution</string>
+    <string name="import_model">Import Model</string>
+    <string name="no_model_selected">No model selected</string>
+    <string name="benchmark_micro">Micro-benchmark</string>
+    <string name="benchmark_full">Full Pipeline</string>
+</resources>

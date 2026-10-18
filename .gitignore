@@ -1,0 +1,28 @@
+.gradle/
+build/
+app/build/
+.idea/
+*.iml
+local.properties
+*.ap_
+*.aab
+*.apk
+.gradle/
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+.DS_Store
+# Large model weights - never commit
+*.safetensors
+*.ckpt
+*.onnx
+*.bin
+*.dlc
+*.gguf
+*.tflite
+# QNN proprietary binaries
+*.so
+!app/src/main/cpp/**/*.cpp
+!app/src/main/cpp/CMakeLists.txt
+tests/__pycache__/
