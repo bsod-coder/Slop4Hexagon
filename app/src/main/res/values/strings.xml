@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Hexagon Image Lab</string>
+    <string name="nav_generate">Generate</string>
+    <string name="nav_library">Models</string>
+    <string name="nav_benchmark">Benchmark</string>
+    <string name="nav_settings">Settings</string>
+</resources>
