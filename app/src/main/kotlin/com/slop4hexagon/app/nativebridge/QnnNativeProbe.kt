@@ -45,14 +45,20 @@ object QnnNativeProbe {
 
     data class Probe(val outcome: Outcome, val detail: String)
 
-    private val loaded: Boolean
-        get() = try {
+    /**
+     * Loading the probe entry point needs the same shared library as the CPU
+     * engine. Resolved once (lazy): [System.loadLibrary] is idempotent, but the
+     * probe should not repeat it on every call.
+     */
+    private val loaded: Boolean by lazy {
+        try {
             System.loadLibrary("slop_native")
             true
         } catch (t: Throwable) {
             Log.w(TAG, "slop_native not loadable, QNN probe unavailable: ${t.message}")
             false
         }
+    }
 
     /**
      * Probes every candidate library and returns the best outcome found,
