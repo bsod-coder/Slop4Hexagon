@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+.DS_Store
+
+# Native host-check outputs
+tools/offline-native-check/out/
+tools/offline-test-runner/out/
+
+# Model weights must never be committed
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.gguf
+*.dlc
+*.bin
+models/
